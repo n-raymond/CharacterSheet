@@ -1,15 +1,17 @@
 package services
 
-import com.google.inject.ImplementedBy
+
 import models.{Pokemon, PokemonStats}
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
+import com.google.inject.ImplementedBy
+import javax.inject._
+
 /**
   * Trait use to handle Pokemons.
   */
-@Singleton
 @ImplementedBy(classOf[PokemonServiceImpl])
 trait PokemonService {
 
@@ -20,6 +22,7 @@ trait PokemonService {
 /**
   * PokemonService implementation.
   */
+@Singleton
 class PokemonServiceImpl extends PokemonService {
 
   /* TODO: Use CRUD to retrieve pokemons */

@@ -2,16 +2,17 @@ package services
 
 import java.awt.Color
 
-import com.google.inject.ImplementedBy
 import models._
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
+import com.google.inject.ImplementedBy
+import javax.inject._
+
 /**
   * Trait use to handle Chapters.
   */
-@Singleton
 @ImplementedBy(classOf[ChapterServiceImpl])
 trait ChapterService {
 
@@ -22,6 +23,7 @@ trait ChapterService {
 /**
   * ChapterSerivce implementation.
   */
+@Singleton
 class ChapterServiceImpl extends ChapterService {
 
   /* TODO: Use CRUD to retrieve chapters */

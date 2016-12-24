@@ -3,13 +3,13 @@ package models
 /**
   * Created by PixelMan on 21/12/2016.
   */
-class PokemonStats(
-                  val pv: (Int, Int),
-                  val attack: (Int, Int),
-                  val defense: (Int, Int),
-                  val specialAttack: (Int, Int),
-                  val spectialDefense: (Int, Int),
-                  val vitesse: (Int, Int)
+case class PokemonStats(
+                  pv: (Int, Int),
+                  attack: (Int, Int),
+                  defense: (Int, Int),
+                  specialAttack: (Int, Int),
+                  spectialDefense: (Int, Int),
+                  vitesse: (Int, Int)
                   ) {
 
   val toSeq = Seq(

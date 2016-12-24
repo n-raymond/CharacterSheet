@@ -2,11 +2,11 @@ package models;
 
 
 
-class Chapter(
-        val id: String,
-        val title: String,
-        val subject: String,
-        val summary: String,
-        val image: String,
-        val topics: Seq[Topic]
+case class Chapter(
+        id: String,
+        title: String,
+        subject: String,
+        summary: String,
+        image: String,
+        topics: Seq[Topic]
         )

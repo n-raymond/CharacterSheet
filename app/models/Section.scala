@@ -3,11 +3,11 @@ package models
 import play.twirl.api.Html
 import services._
 
-class Section(
-               val name: String,
-               val title: String,
-               val subTitle: String,
-               val html: Html
+case class Section(
+               name: String,
+               title: String,
+               subTitle: String,
+               html: Html
              ) {
 
   def this(infos: (String, String, String), html: Html) =

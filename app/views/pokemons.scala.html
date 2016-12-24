@@ -1,0 +1,83 @@
+@(pokemons: Seq[Pokemon])
+
+
+@pokemonSprite(pokemon: Pokemon) = {
+  <div class="pokemon_sprite">
+    <div class="pokemon_type_left">@pokemon.typ</div>
+    <div class="pokemon_sprite_background"></div>
+    <div class="pokemon_type_right">@pokemon.typ</div>
+    <div class="pokemon_sprite_handler">
+      <img src="@routes.Assets.at(s"images/pokemons/${pokemon.sprite}")" />
+    </div>
+  </div>
+}
+
+
+@for(pokemon <- pokemons){
+  <div id="@pokemon.id" class="pokemon_box @pokemon.className">
+
+    <div class="pokemon_box_border"></div>
+
+    <div class="pokemon_box_header">
+      <div class="pokemon_box_title">
+        <span class="title_mark"></span>
+        <h3>@pokemon.name</h3>
+        <span class="title_mark"></span>
+      </div>
+      <div class="pokemon_infos">
+      @pokemon.pokemon ♦︎ Niv. @pokemon.level ♦︎ @pokemon.nature
+      </div>
+    </div>
+
+    @pokemonSprite(pokemon)
+
+    <div class="pokemon_stats">
+      <table>
+
+        @for((statName, initialValue, levelAddition) <- pokemon.stats.toSeq) {
+          <tr>
+            <td>@statName</td>
+            <td>@initialValue</td>
+            <td class="pokemon_stats_plus">+</td>
+            <td>@levelAddition</td>
+            <td class="pokemon_stats_arrow">→</td>
+            <td>@{initialValue + levelAddition}</td>
+          </tr>
+        }
+
+      </table>
+    </div>
+
+    <div class="pokemon_attacks">
+      <div class="pokemon_attacks_folding down">
+
+        <div class="blur_background">
+          <div class="pokemon_box_border"></div>
+          @pokemonSprite(pokemon)
+          <img src="@routes.Assets.at("images/pokemons/Stats.png")" />
+          <div class="pokemon_box_border"></div>
+        </div>
+
+        <div class="frozen_glass">
+          <!-- GlassFolding argument must be the id of this pokemon box -->
+          <a onclick="glassFolding('@pokemon.id')">
+            <span class="glass_arrow">&#9660;</span>
+            Attaques
+            <span class="glass_arrow">&#9660;</span>
+          </a>
+          <div class="attacks_lists">
+            <ul>
+              @for(attack <- pokemon.attacks) {
+                <li>@attack</li>
+              }
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pokemon_box_border"></div>
+
+  </div>
+}

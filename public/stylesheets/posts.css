@@ -1,0 +1,222 @@
+
+/* Summary */
+
+.summary {
+  margin: 10px;
+  text-align: center;
+}
+
+.summary_pictures {
+  display: inline-block;
+  background-image: linear-gradient(white, rgb(242, 242, 242));
+  padding: 5px;
+  margin-right: 10px;
+  border: 1px solid rgb(215, 215, 215);
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.summary_pictures img {
+  display: block;
+  width: 80px;
+}
+
+.summary_text {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(white, rgb(242, 242, 242));
+  border: 1px solid rgb(215, 215, 215);
+  width: 366px;
+  color: black;
+  padding: 25px;
+  vertical-align: middle;
+
+  font-family: 'Oswald',sans-serif;
+  font-variant: normal;
+  font-weight: 300;
+  font-size: 15px;
+  text-align: justify;
+  font-style: italic;
+  transform: skew(10deg);
+  color: rgb(100, 100, 100);
+}
+
+.summary_text::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: -9px;
+  border-style: solid;
+  border-width: 10px 10px 0 0;
+  border-color: transparent rgb(248, 248, 248);
+  z-index: 20;
+}
+
+.summary_text::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: -11px;
+  border-style: solid;
+  border-width: 11px 11px 0 0;
+  border-color: transparent rgb(215, 215, 215);
+  z-index: 10;
+}
+
+.summary_text em {
+  font-weight: 600;
+}
+
+
+/* Topic RP */
+
+.topic {
+  font-size: 0;
+  margin: 7px 0;
+
+  color: rgb(225, 225, 225);
+  text-decoration: none;
+  font-family: 'Oswald',sans-serif;
+  font-variant: normal;
+  font-weight: 300;
+  text-align: center;
+}
+
+.topic a {
+  color: rgb(225, 225, 225);
+}
+
+
+.topic_title, .topic_featuring {
+  display: inline-block;
+  transform: skew(-20deg);
+
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+
+
+/* Topic Title */
+
+.topic_title {
+  position: relative;
+  width: 350px;
+  padding-left: 20px;
+  margin-right: 10px;
+  background-image: linear-gradient(
+    to right,
+    rgb(100, 100, 100),
+    rgb(170, 170, 170)
+  );
+  overflow: hidden;
+  vertical-align: middle;
+
+  text-align: left;
+}
+
+.topic_title::before {
+  content: "\2666";
+}
+
+.topic.done .topic_title:hover {
+  color: rgb(176, 230, 176);
+}
+
+.topic.doing .topic_title:hover {
+  color: rgb(168, 235, 251);
+}
+
+
+/* Topic Status */
+
+.topic_title::after {
+  position: absolute;
+  width: 90px;
+  right: -70px;
+  border-left: 3px solid rgb(241,241,241);
+
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+
+  transition: all 0.5s ease-in-out;
+}
+
+.topic_title:hover::after{
+  right: 0;
+  color: rgb(225, 225, 225);
+}
+
+.topic.done .topic_title::after {
+  content: "Terminé";
+  background-image: linear-gradient(
+    to right,
+    rgb(52, 145, 88) 20%,
+    rgb(0, 73, 1)
+  );
+}
+
+.topic.doing .topic_title::after {
+  content: "En cours";
+  background-image: linear-gradient(
+    to right,
+    rgb(40, 124, 163),
+    rgb(0, 53, 87)
+  );
+}
+
+
+
+
+/* Topic Featuring */
+
+.topic_featuring {
+  width: 160px;
+  padding-left: 20px;
+  background-image: linear-gradient(
+    to right,
+    rgb(100, 100, 100),
+    rgb(150, 150, 150)
+  );
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+.topic_featuring.solo:hover {
+  color: rgb(225, 225, 225);
+}
+
+.topic_featuring.solo::before {
+  content: "Solo";
+}
+
+.topic_featuring:not(.solo)::before {
+  content: "With ";
+}
+
+.topic_featuring:not(.solo)::after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 20px;
+  right: 0;
+  border-left: 3px solid rgb(241,241,241);
+}
+
+.topic_featuring.astrid_de_valnor::after {
+  background: rgb(215, 144, 33);
+}
+.topic_featuring.astrid_de_valnor:hover {
+  color: rgb(241, 194, 122);
+}
+
+.topic_featuring.maelys_sena::after {
+  background: rgb(191, 176, 47);
+}
+.topic_featuring.maelys_sena:hover {
+  color: rgb(224, 215, 136);
+}

@@ -1,0 +1,45 @@
+@(title: String, sections: Seq[Section])(nav: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/index/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/index.css")">
+        @for(section <- sections) {
+            <link rel="stylesheet" media="screen" href="@routes.Assets.at(s"stylesheets/${section.name}.css")">
+        }
+        <link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    </head>
+    <body>
+
+        <div id="main-container">
+            <img id="banner" src="@routes.Assets.at("images/index/Banner.png")" />
+
+            @nav
+
+            @for(section <- sections) {
+                <section id="@section.name" class="accordion-hidden">
+                    <header>
+                        <a onclick="closeAndExpands('#@section.name');">
+                            <p class="pointer">&#9654;</p> <h1>@section.title</h1>
+                        </a>
+                        <div class="color-shade"></div>
+                    </header>
+                    <div class="content">
+                        <div class="subtitle">@section.subTitle</div>
+                        @section.html
+                    </div>
+                </section>
+            }
+        </div>
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/accordion.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/glass_folding.js")"></script>
+
+    </body>
+</html>

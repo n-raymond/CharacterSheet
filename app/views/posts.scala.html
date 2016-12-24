@@ -1,0 +1,117 @@
+@(chapters: Seq[Chapter])
+
+@solo() = {
+  <a class="topic_featuring solo"></a>
+}
+
+@someone(character: Character) = {
+  <a class="topic_featuring @character.className" href="@character.link">
+    @character.name
+  </a>
+}
+
+@for(chapter <- chapters) {
+  <h2>Plan @chapter.id • @chapter.title</h2>
+
+  <div class="summary">
+    <div class="summary_pictures">
+      <img src="@routes.Assets.at(s"images/posts/${chapter.image}")"/>
+    </div>
+    <div class="summary_text">
+      <em>@chapter.subject</em>
+      @chapter.summary
+    </div>
+  </div>
+
+  @for(topic <- chapter.topics) {
+    <div class="topic @topic.status.toString">
+      <a class="topic_title" href="@topic.link">
+      @topic.title
+      </a>
+
+      @{ topic.featuring match {
+        case Solo() => solo()
+        case Someone(c) => someone(c)
+      }}
+
+    </div>
+  }
+
+    <!--<h2>Plan C • Back in Business</h2>-->
+}
+
+
+<!-- Old version -->
+
+<!--
+<h2>Plan A • Home Sweet Home</h2>
+
+<div class="summary">
+  <div class="summary_pictures">
+    <img src="@routes.Assets.at("images/posts/HomeSweetHome.png")"/>
+  </div>
+  <div class="summary_text">
+    <em>Où l'on meurt puis on vit.</em>
+    Incomprehensions.
+    Pertes de contrôle et joies mesquines.
+    Prises de risques.
+    Conséquences.
+    Bras de fers et poigne d'acier.
+    Le petit orteil, celui qui fait bien mal.
+    Des outils bien gardés.
+    De l'eau oui, du thé non.
+  </div>
+</div>
+
+<div class="topic done">
+  <a class="topic_title" href="http://master-poke.forumactif.fr/t9395-jails-and-queen">
+      Jails and Queen
+  </a>
+  <a class="topic_featuring solo"></a>
+
+</div>
+
+<div class="topic done">
+  <a class="topic_title" href="http://master-poke.forumactif.fr/t10658-prise-la-main-dans-le-sac">
+      Prise la main dans le sac !
+  </a>
+  <a class="topic_featuring astrid_de_valnor" href="http://master-poke.forumactif.fr/t8288-astrid-de-valnor">
+      Astrid De Valnor
+  </a>
+</div>
+
+<div class="topic doing">
+  <a class="topic_title" href="http://master-poke.forumactif.fr/t10755-the-neighboor-below">
+      The neighboor below
+  </a>
+  <a class="topic_featuring maelys_sena" href="http://master-poke.forumactif.fr/t4130-maelys-sena#44028">
+      Maelys Sena
+  </a>
+</div>
+
+<h2>Plan B • Stayin' Alive</h2>
+
+<div class="summary">
+  <div class="summary_pictures">
+    <img src="@routes.Assets.at("images/posts/StayinAlive.png")"/>
+  </div>
+  <div class="summary_text">
+    <em>Où l'on tente de rattrapper les pôts cassés.</em>
+    Aapparition d'une bestiole peu sympatique.
+    La gravité, cette traitresse.
+    Des ennuis. Encore des ennuis.
+    Drôle de manière de dormir.
+    Dormir ? Pourquoi faire ?
+    De l'art d'arriver en retard.
+  </div>
+</div>
+
+<div class="topic doing">
+  <a class="topic_title" href="http://master-poke.forumactif.fr/t13758-de-festives-retrouvailles#241832">
+      De festives retrouvailles
+  </a>
+  <a class="topic_featuring astrid_de_valnor" href="http://master-poke.forumactif.fr/t8288-astrid-de-valnor">
+      Astrid De Valnor
+  </a>
+</div>
+  -->

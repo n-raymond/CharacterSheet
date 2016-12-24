@@ -11,6 +11,7 @@ import ExecutionContext.Implicits.global
 /**
   * Trait use to handle Chapters.
   */
+@Singleton
 @ImplementedBy(classOf[ChapterServiceImpl])
 trait ChapterService {
 

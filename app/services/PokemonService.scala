@@ -9,6 +9,7 @@ import ExecutionContext.Implicits.global
 /**
   * Trait use to handle Pokemons.
   */
+@Singleton
 @ImplementedBy(classOf[PokemonServiceImpl])
 trait PokemonService {
 

@@ -1,5 +1,6 @@
 package models
 
+import com.google.inject.Inject
 import play.twirl.api.Html
 import services.{ChapterService, ChapterServiceImpl, PokemonService, PokemonServiceImpl}
 
@@ -45,7 +46,7 @@ object CharacterSectionFactory extends SectionFactory {
   */
 object PokemonSectionFactory extends SectionFactory {
 
-  //TODO: Use injection
+  @Inject
   val service : PokemonService = new PokemonServiceImpl
 
   override protected def getFutureInfos() = Future {
@@ -67,7 +68,7 @@ object PokemonSectionFactory extends SectionFactory {
   */
 object PostsSectionFactory extends SectionFactory {
 
-  //TODO: Use injection
+  @Inject
   val service : ChapterService = new ChapterServiceImpl
 
   override protected def getFutureInfos() = Future {

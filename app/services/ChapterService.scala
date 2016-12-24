@@ -2,21 +2,28 @@ package services
 
 import java.awt.Color
 
+import com.google.inject.ImplementedBy
 import models._
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
 /**
-  * Created by PixelMan on 23/12/2016.
+  * Trait use to handle Chapters.
   */
+@ImplementedBy(classOf[ChapterServiceImpl])
 trait ChapterService {
 
   def getChapters : Future[Seq[Chapter]]
 
 }
 
+/**
+  * ChapterSerivce implementation.
+  */
 class ChapterServiceImpl extends ChapterService {
+
+  /* TODO: Use CRUD to retrieve chapters */
 
   override def getChapters = Future {
 

@@ -1,21 +1,27 @@
 package services
 
+import com.google.inject.ImplementedBy
 import models.{Pokemon, PokemonStats}
 
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
 /**
-  * Created by PixelMan on 23/12/2016.
+  * Trait use to handle Pokemons.
   */
+@ImplementedBy(classOf[PokemonServiceImpl])
 trait PokemonService {
 
   def getPokemons: Future[Seq[Pokemon]]
 
 }
 
-/** TODO Add IOC */
+/**
+  * PokemonService implementation.
+  */
 class PokemonServiceImpl extends PokemonService {
+
+  /* TODO: Use CRUD to retrieve pokemons */
 
   override def getPokemons = Future {
     val tarsal = new Pokemon(

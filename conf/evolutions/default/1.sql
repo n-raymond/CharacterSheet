@@ -26,13 +26,13 @@ CREATE TABLE pokemons (
     lvl INT NOT NULL,
     nature VARCHAR NOT NULL,
     sprite VARCHAR NOT NULL,
-    stats_id INT REFERENCES pokemons_stats(id)
+    stats_id INT NOT NULL REFERENCES pokemons_stats(id)
 );
 
 
 CREATE TABLE pokemons_attacks(
     id SERIAL PRIMARY KEY,
-    pokemon_id INT REFERENCES pokemons(id),
+    pokemon_id INT NOT NULL REFERENCES pokemons(id),
     name VARCHAR NOT NULL
 );
 

@@ -96,7 +96,7 @@ class ChapterServiceImpl extends ChapterService {
       "B",
       "Stayin' Alive",
       "Où l'on tente de rattrapper les pôts cassés.",
-      """Aapparition d'une bestiole peu sympatique.
+      """Apparition d'une bestiole peu sympatique.
         La gravité, cette traitresse.
         Des ennuis. Encore des ennuis.
         Drôle de manière de dormir.

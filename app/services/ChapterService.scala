@@ -1,22 +1,25 @@
 package services
 
 import java.awt.Color
-
-import models._
-
-import scala.concurrent._
-import ExecutionContext.Implicits.global
-
-import com.google.inject.ImplementedBy
 import javax.inject._
 
+import com.google.inject.ImplementedBy
+import dao._
+import exceptions.DataNotFoundException
+import models._
+import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import slick.driver.JdbcProfile
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
+
 /**
-  * Trait use to handle Chapters.
+  * Trait used to handle Chapters.
   */
 @ImplementedBy(classOf[ChapterServiceImpl])
 trait ChapterService {
 
-  def getChapters : Future[Seq[Chapter]]
+  def all : Future[Seq[Chapter]]
 
 }
 
@@ -24,11 +27,66 @@ trait ChapterService {
   * ChapterSerivce implementation.
   */
 @Singleton
-class ChapterServiceImpl extends ChapterService {
+class ChapterServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
+  extends ChapterService with HasDatabaseConfigProvider[JdbcProfile] {
+  import driver.api._
 
-  /* TODO: Use CRUD to retrieve chapters */
+  private val chapters = TableQuery[ChaptersDAO]
+  private val topics = TableQuery[TopicsDAO]
+  private val characters = TableQuery[CharactersDAO]
 
-  override def getChapters = Future {
+  /* Queries */
+
+  override def all = {
+    db.run(chapters.result) flatMap {
+      Future.traverse(_) {
+        chapterEntry => topicsByChapterId(chapterEntry._1) map {
+          ts => new Chapter(chapterEntry, ts)
+        }
+      }
+    }
+  }
+
+  private def topicsByChapterId(chId: Int): Future[Seq[Topic]] = {
+    val query = topics.filter(_.chapterId === chId)
+    db.run(query.result) flatMap {
+      Future.traverse(_) {
+        topicEntry => featuringFromOptionalCharacterId(topicEntry._6) map {
+          featuring => new Topic(topicEntry, featuring)
+        }
+      }
+    }
+  }
+
+  private def characterById(id: Int): Future[Character] = {
+    val query = characters.filter(_.id === id)
+    db.run(query.result) map {
+      seq => seq match {
+        case Seq() => throw new DataNotFoundException(s"No character can be find with the given id : $id")
+        case _ => new Character(seq(0))
+      }
+    }
+  }
+
+  /* Utilities */
+
+  private def featuringFromOptionalCharacterId(optId: Option[Int]): Future[Featuring] = {
+    optId map {
+      characterById(_)
+    } match {
+      case None => Future { Solo() }
+      case Some(futureCh) => futureCh map { Someone(_) }
+    }
+  }
+
+
+
+
+
+
+
+
+  /*override def all = Future {
 
     /* Characters */
 
@@ -108,5 +166,5 @@ class ChapterServiceImpl extends ChapterService {
 
     Seq(planA, planB)
 
-  }
+  }*/
 }

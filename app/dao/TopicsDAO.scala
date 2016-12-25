@@ -3,7 +3,7 @@ package dao
 import dao.TopicsDAO.TopicsEntry
 import slick.driver.PostgresDriver.api._
 
-class TopicsDAO (tag: Tag) extends Table[TopicsEntry](tag, "chapters") {
+class TopicsDAO (tag: Tag) extends Table[TopicsEntry](tag, "topics") {
   def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def chapterId = column[Int]("chapter_id")
   def name = column[String]("name")

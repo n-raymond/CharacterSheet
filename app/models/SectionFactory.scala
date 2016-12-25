@@ -75,7 +75,7 @@ class PostsSectionFactory @Inject()(val service : ChapterService) extends Sectio
   }
 
   override protected def getFutureHtml() =
-    service.getChapters map {
+    service.all map {
       chapters => views.html.posts(chapters)
     }
 }

@@ -14,7 +14,7 @@
 
 
 @for(pokemon <- pokemons){
-  <div id="@pokemon.id" class="pokemon_box @pokemon.className">
+  <div id="@pokemon.formattedName" class="pokemon_box @pokemon.formattedType">
 
     <div class="pokemon_box_border"></div>
 
@@ -60,7 +60,7 @@
 
         <div class="frozen_glass">
           <!-- GlassFolding argument must be the id of this pokemon box -->
-          <a onclick="glassFolding('@pokemon.id')">
+          <a onclick="glassFolding('@pokemon.formattedName')">
             <span class="glass_arrow">&#9660;</span>
             Attaques
             <span class="glass_arrow">&#9660;</span>

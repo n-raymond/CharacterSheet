@@ -76,7 +76,7 @@ class ChapterServiceImpl extends ChapterService {
 
     /* Chapters */
 
-    val planA = new Chapter(
+    val planA = Chapter(
       "A",
       "Home Sweet Home",
       "Où l'on meurt puis l'on vit.",
@@ -92,7 +92,7 @@ class ChapterServiceImpl extends ChapterService {
       Seq(jailsAndQueen, priseLaMainDansLeSac, theNeighboorBelow)
     )
 
-    val planB = new Chapter(
+    val planB = Chapter(
       "B",
       "Stayin' Alive",
       "Où l'on tente de rattrapper les pôts cassés.",

@@ -1,6 +1,6 @@
 package models
 
-import com.google.inject.Inject
+import com.google.inject.{Inject, Singleton}
 import play.twirl.api.Html
 import services.{ChapterService, ChapterServiceImpl, PokemonService, PokemonServiceImpl}
 
@@ -27,7 +27,8 @@ trait SectionFactory {
   * SectionFactory implementation that generates
   * character Section
   */
-object CharacterSectionFactory extends SectionFactory {
+@Singleton
+class CharacterSectionFactory extends SectionFactory {
 
   override protected def getFutureInfos() = Future {
     ("character",
@@ -44,10 +45,8 @@ object CharacterSectionFactory extends SectionFactory {
   * SectionFactory implementation that generates
   * pokemon Section
   */
-object PokemonSectionFactory extends SectionFactory {
-
-  @Inject
-  val service : PokemonService = new PokemonServiceImpl
+@Singleton
+class PokemonSectionFactory @Inject()(val service : PokemonService) extends SectionFactory {
 
   override protected def getFutureInfos() = Future {
     ("pokemons",
@@ -56,7 +55,7 @@ object PokemonSectionFactory extends SectionFactory {
   }
 
   override protected def getFutureHtml() =
-    service.getPokemons map {
+    service.all map {
       ps => views.html.pokemons(ps)
     }
 
@@ -66,10 +65,8 @@ object PokemonSectionFactory extends SectionFactory {
   * SectionFactory implementation that generates
   * posts Section
   */
-object PostsSectionFactory extends SectionFactory {
-
-  @Inject
-  val service : ChapterService = new ChapterServiceImpl
+@Singleton
+class PostsSectionFactory @Inject()(val service : ChapterService) extends SectionFactory {
 
   override protected def getFutureInfos() = Future {
     ("posts",
@@ -87,7 +84,8 @@ object PostsSectionFactory extends SectionFactory {
   * SectionFactory implementation that generates
   * links Section
   */
-object LinksSectionFactory extends SectionFactory {
+@Singleton
+class LinksSectionFactory extends SectionFactory {
 
   override protected def getFutureInfos() = Future {
     ("links",
@@ -103,7 +101,8 @@ object LinksSectionFactory extends SectionFactory {
   * SectionFactory implementation that generates
   * tresors Section
   */
-object TresorsSectionFactory extends SectionFactory {
+@Singleton
+class TresorsSectionFactory extends SectionFactory {
 
   override protected def getFutureInfos() = Future {
     ("tresors",

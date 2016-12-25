@@ -1,6 +1,6 @@
 package models
 
-sealed class Featuring
+sealed abstract class Featuring
 
 case class Solo() extends Featuring
 

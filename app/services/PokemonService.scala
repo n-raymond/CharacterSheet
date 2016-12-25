@@ -1,13 +1,17 @@
 package services
 
 
-import models.{Pokemon, PokemonStats}
-
-import scala.concurrent._
-import ExecutionContext.Implicits.global
+import javax.inject._
 
 import com.google.inject.ImplementedBy
-import javax.inject._
+import dao.{PokemonsAttacksDAO, PokemonsDAO, PokemonsStatsDAO}
+import models.Pokemon
+import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
+import slick.driver.JdbcProfile
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
+
 
 /**
   * Trait use to handle Pokemons.
@@ -15,7 +19,7 @@ import javax.inject._
 @ImplementedBy(classOf[PokemonServiceImpl])
 trait PokemonService {
 
-  def getPokemons: Future[Seq[Pokemon]]
+  def all: Future[Seq[Pokemon]]
 
 }
 
@@ -23,19 +27,49 @@ trait PokemonService {
   * PokemonService implementation.
   */
 @Singleton
-class PokemonServiceImpl extends PokemonService {
+class PokemonServiceImpl @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
+  extends PokemonService with HasDatabaseConfigProvider[JdbcProfile] {
+  import driver.api._
 
-  /* TODO: Use CRUD to retrieve pokemons */
+  private val pokemons = TableQuery[PokemonsDAO]
+  private val pokemonsStats = TableQuery[PokemonsStatsDAO]
+  private val pokemonsAttacks = TableQuery[PokemonsAttacksDAO]
 
-  override def getPokemons = Future {
-    val tarsal = new Pokemon(
+  /* Queries */
+
+  override def all = {
+
+    val query = for {
+      p <- pokemons
+      s <- pokemonsStats if p.statsId === s.id
+    } yield (p, s)
+
+    db.run(query.result) flatMap {
+      Future.traverse(_) {
+        case (pokemon, stats) => getAttacksByPokemonId(pokemon._1) map {
+          attacks => new Pokemon(pokemon, stats, attacks)
+        }
+      }
+    }
+
+  }
+
+  private def getAttacksByPokemonId(pid: Int) : Future[Seq[String]] = {
+    val query = pokemonsAttacks.filter(_.pokemonId === pid).map(_.name)
+    db.run(query.result)
+  }
+
+
+
+  /*override def all = Future {
+    val tarsal = Pokemon(
       "Tarsal",
       "Gordon",
       "Psy Fée",
       6,
       "Obstiné",
       "Tarsal.png",
-      new PokemonStats(
+      PokemonStats(
         (28, 2),
         (25, 0),
         (25, 1),
@@ -46,14 +80,14 @@ class PokemonServiceImpl extends PokemonService {
       Seq("Rugissement", "Choc Mental")
     )
 
-    val prismillon = new Pokemon(
+    val prismillon = Pokemon(
       "Prismillon",
       "Tartenpion",
       "Insecte Vol",
       15,
       "Festif",
       "Prismillon.png",
-      new PokemonStats(
+      PokemonStats(
         (28, 2),
         (25, 0),
         (25, 1),
@@ -73,6 +107,6 @@ class PokemonServiceImpl extends PokemonService {
     )
 
     Seq(tarsal, prismillon)
-  }
+  }*/
 
 }

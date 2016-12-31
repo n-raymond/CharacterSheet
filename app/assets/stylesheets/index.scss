@@ -31,7 +31,7 @@ nav a {
   display: inline-block;
   width: 200px;
 
-  background-image: url("../images/index/NavLink.png");
+  background-image: url("/assets/images/index/NavLink.png");
 
   color: rgb(175, 212, 255);
   text-decoration: none;
@@ -102,23 +102,23 @@ section#tresors {
 
 
 section#character header {
-  background-image: url("../images/index/BlackMenuCharacter.png");
+  background-image: url("/assets/images/index/BlackMenuCharacter.png");
 }
 
 section#pokemons header {
-  background-image: url("../images/index/BlackMenuPokemons.png");
+  background-image: url("/assets/images/index/BlackMenuPokemons.png");
 }
 
 section#posts header {
-  background-image: url("../images/index/BlackMenuPosts.png");
+  background-image: url("/assets/images/index/BlackMenuPosts.png");
 }
 
 section#links header {
-  background-image: url("../images/index/BlackMenuLinks.png");
+  background-image: url("/assets/images/index/BlackMenuLinks.png");
 }
 
 section#tresors header {
-  background-image: url("../images/index/BlackMenuTresors.png");
+  background-image: url("/assets/images/index/BlackMenuTresors.png");
 }
 
 #main-container header h1,
@@ -192,23 +192,23 @@ section#tresors header {
 }
 
 section#character .color-shade {
-  background-image: url("../images/index/ColorShadeCharacter.png");
+  background-image: url("/assets/images/index/ColorShadeCharacter.png");
 }
 
 section#pokemons .color-shade {
-  background-image: url("../images/index/ColorShadePokemons.png");
+  background-image: url("/assets/images/index/ColorShadePokemons.png");
 }
 
 section#posts .color-shade {
-  background-image: url("../images/index/ColorShadePosts.png");
+  background-image: url("/assets/images/index/ColorShadePosts.png");
 }
 
 section#links .color-shade {
-  background-image: url("../images/index/ColorShadeLinks.png");
+  background-image: url("/assets/images/index/ColorShadeLinks.png");
 }
 
 section#tresors .color-shade {
-  background-image: url("../images/index/ColorShadeTresors.png");
+  background-image: url("/assets/images/index/ColorShadeTresors.png");
 }
 
 

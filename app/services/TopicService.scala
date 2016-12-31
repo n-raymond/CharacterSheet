@@ -6,10 +6,12 @@ import com.google.inject.ImplementedBy
 import dao.TopicsDAO
 import models.{Featuring, Solo, Someone, Topic}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
-import slick.driver
 import slick.driver.JdbcProfile
 
-import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
+
+import javax.inject.Singleton
 
 /**
   * Trait to handle topics.

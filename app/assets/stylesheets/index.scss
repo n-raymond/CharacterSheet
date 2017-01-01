@@ -1,5 +1,4 @@
 
-/* Main Container */
 
 #main-container {
   position: absolute;
@@ -7,305 +6,306 @@
   width: 600px;
   height: 2000px;
   background: rgb(241,241,241);
-}
 
 
-/* Banner */
+  /* Banner */
+
+  #banner {
+    display: block;
+    max-width: 600px;
+  }
+
+
+  /* nav */
+
+  nav {
+    text-align: center;
+    font-size: 0;
+    margin-top: 4px;
+    margin-bottom: 20px;
+
+    a {
+      display: inline-block;
+      width: 200px;
+
+      background-image: url("/assets/images/index/NavLink.png");
+
+      color: rgb(175, 212, 255);
+      text-decoration: none;
+      font-size: 10px;
+      font-family: 'Oswald',sans-serif;
+      font-style: italic;
+      font-variant: normal;
+      font-weight: 300;
+      letter-spacing: 3px;
+    }
+
+    a:hover {
+      color: rgb(79, 182, 240);
+    }
+  }
+
+
+  /* Sections and components */
+
+  section {
+    margin-top: 10px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+
+
+    /* Section Header */
+
+    header {
+      position: relative;
+      height: 50px;
+      background: rgb(40, 40, 40);
+
+      h1, a, .pointer {
+        color: white;
+        font-family: 'Oswald',sans-serif;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 300;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        word-spacing: 5px;
+      }
+
+      h1 {
+        z-index: 10;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        // Same than #main-container section header height
+        line-height: 50px;
+        vertical-align: middle;
+        padding-left: 30px;
+
+        font-size: 30px;
+
+        cursor: pointer;
+      }
+
+      a {
+        display: block;
+      }
+
+      .pointer {
+        z-index: 10;
+        padding:0;
+        margin:10px 0 0 6px;
+        line-height:30px;
+        width:13px;
+        font-size: 15px;
+        position:absolute;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .color-shade {
+        z-index: 5;
+        position: absolute;
+        left: calc(-100% + 24px);
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+
+    /* Section content */
+
+    .content {
+      position: relative;
+      margin: 0;
+      padding: 0;
+
+      h2 {
+        background: rgb(60, 60, 60);
+        width: 100%;
+        margin: 20px 0 0 0;
+
+        color: white;
+        font-family: 'Oswald',sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+
+      .subtitle {
+        width: 100%;
+        height: 17px;
+        line-height: 17px;
+        vertical-align: middle;
+
+        color: white;
+        font-family: 'Oswald',sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 200;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+    }
+
+    /* Copyright */
+
+    #copyright {
+      position: absolute;
+      right: 10px;
+
+      color: rgb(40, 40, 40);
+      font-family: 'Oswald',sans-serif;
+      font-size: 13px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      span {
+        color: rgb(0, 124, 185);
+        font-size: 16px;
+      }
+    }
+
+
+
+
+    /* Section with or without accordion-hidden */
+
+    &.accordion-hidden {
+      // Same than #main-container section header height
+      height: 50px;
+    }
+
+    &:not(.accordion-hidden) header {
+      .pointer {
+        display:block;
+        transform:rotate(90deg);
+        padding:0;
+      }
+
+      .color-shade {
+        left:0;
+      }
+    }
+
+
+
+
+    /* Specific sections */
+
+    &#character {
+      // Must fit content height
+      height: 750px;
+
+      header {
+        background-image: url("/assets/images/index/BlackMenuCharacter.png");
+      }
+
+      .color-shade {
+        background-image: url("/assets/images/index/ColorShadeCharacter.png");
+      }
+
+      .content .subtitle {
+        background-image: linear-gradient(
+                        to right,
+                        rgb(40, 123, 163),
+                        rgb(40, 40, 40)
+        );
+      }
+    }
+
+    &#pokemons {
+      // Must fit content height
+      height: 410px;
+
+      header {
+        background-image: url("/assets/images/index/BlackMenuPokemons.png");
+      }
+
+      .color-shade {
+        background-image: url("/assets/images/index/ColorShadePokemons.png");
+      }
+
+      .content .subtitle {
+        background-image: linear-gradient(
+                        to right,
+                        rgb(117, 87, 145),
+                        rgb(40, 40, 40)
+        );
+      }
+    }
+
+    &#posts {
+      // Must fit content height
+      height: 600px;
+
+      header {
+        background-image: url("/assets/images/index/BlackMenuPosts.png");
+      }
+
+      .color-shade {
+        background-image: url("/assets/images/index/ColorShadePosts.png");
+      }
+
+      .content .subtitle {
+        background-image: linear-gradient(
+                        to right,
+                        rgb(181, 59, 62),
+                        rgb(40, 40, 40)
+        );
+      }
+    }
+
+    &#links {
+      // Must fit content height
+      height: 100px;
+
+      header {
+        background-image: url("/assets/images/index/BlackMenuLinks.png");
+      }
+
+      .color-shade {
+        background-image: url("/assets/images/index/ColorShadeLinks.png");
+      }
+
+      .content .subtitle {
+        background-image: linear-gradient(
+                        to right,
+                        rgb(52, 145, 88),
+                        rgb(40, 40, 40)
+        );
+      }
+    }
+
+    &#tresors {
+      // Must fit content height
+      height: 250px;
+
+      header {
+        background-image: url("/assets/images/index/BlackMenuTresors.png");
+      }
+
+      .color-shade {
+        background-image: url("/assets/images/index/ColorShadeTresors.png");
+      }
+
+      .content .subtitle {
+        background-image: linear-gradient(
+                        to right,
+                        rgb(183, 150, 84),
+                        rgb(40, 40, 40)
+        );
+        text-decoration: line-through;
+      }
+    }
+
+  }
 
-#banner {
-  display: block;
-  max-width: 600px;
-}
-
-
-/* nav */
-
-nav {
-  text-align: center;
-  font-size: 0;
-  margin-top: 4px;
-  margin-bottom: 20px;
-}
-
-nav a {
-  display: inline-block;
-  width: 200px;
-
-  background-image: url("/assets/images/index/NavLink.png");
-
-  color: rgb(175, 212, 255);
-  text-decoration: none;
-  font-size: 10px;
-  font-family: 'Oswald',sans-serif;
-  font-style: italic;
-  font-variant: normal;
-  font-weight: 300;
-  letter-spacing: 3px;
-}
-
-nav a:hover {
-  color: rgb(79, 182, 240);
-}
-
-
-
-/* Sections and components */
-
-#main-container section, #main-container .pointer {
-  transition: all 0.5s ease-in-out;
-}
-
-#main-container section {
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-#main-container section.accordion-hidden {
-  /* Same than #main-container section header height */
-  height: 50px;
-}
-
-section#character {
-  /* Must fit content height */
-  height: 750px;
-}
-
-section#pokemons {
-  /* Must fit content height */
-  height: 410px;
-}
-
-section#posts {
-  /* Must fit content height */
-  height: 600px;
-}
-
-section#links {
-  /* Must fit content height */
-  height: 100px;
-}
-
-section#tresors {
-  /* Must fit content height */
-  height: 250px;
-}
-
-
-
-/* Section Header */
-
-#main-container section header {
-  position: relative;
-  height: 50px;
-  background: rgb(40, 40, 40);
-}
-
-
-section#character header {
-  background-image: url("/assets/images/index/BlackMenuCharacter.png");
-}
-
-section#pokemons header {
-  background-image: url("/assets/images/index/BlackMenuPokemons.png");
-}
-
-section#posts header {
-  background-image: url("/assets/images/index/BlackMenuPosts.png");
-}
-
-section#links header {
-  background-image: url("/assets/images/index/BlackMenuLinks.png");
-}
-
-section#tresors header {
-  background-image: url("/assets/images/index/BlackMenuTresors.png");
-}
-
-#main-container header h1,
-#main-container header a,
-#main-container header .pointer {
-  color: white;
-  font-family: 'Oswald',sans-serif;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 300;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  word-spacing: 5px;
-}
-
-#main-container header h1 {
-  z-index: 10;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  /* Same than #main-container section header height */
-  line-height: 50px;
-  vertical-align: middle;
-  padding-left: 30px;
-
-  font-size: 30px;
-
-  cursor: pointer;
-}
-
-#main-container header a {
-  display: block;
-}
-
-
-/* Header pointer */
-
-#main-container .pointer {
-  z-index: 10;
-  padding:0;
-  margin:10px 0 0 6px;
-  line-height:30px;
-  width:13px;
-  font-size: 15px;
-  position:absolute;
-}
-
-#main-container section:not(.accordion-hidden) .pointer {
-  display:block;
-  transform:rotate(90deg);
-  padding:0;
-}
-
-
-
-
-/* Header color shade style and annimation */
-
-#main-container header .color-shade {
-  z-index: 5;
-  position: absolute;
-  left: calc(-100% + 24px);
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s ease-in-out;
-}
-
-#main-container section:not(.accordion-hidden) .color-shade {
-  left:0;
-}
-
-section#character .color-shade {
-  background-image: url("/assets/images/index/ColorShadeCharacter.png");
-}
-
-section#pokemons .color-shade {
-  background-image: url("/assets/images/index/ColorShadePokemons.png");
-}
-
-section#posts .color-shade {
-  background-image: url("/assets/images/index/ColorShadePosts.png");
-}
-
-section#links .color-shade {
-  background-image: url("/assets/images/index/ColorShadeLinks.png");
-}
-
-section#tresors .color-shade {
-  background-image: url("/assets/images/index/ColorShadeTresors.png");
-}
-
-
-
-/* Section content */
-
-.content {
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-.content h2 {
-  background: rgb(60, 60, 60);
-  width: 100%;
-  margin: 20px 0 0 0;
-
-  color: white;
-  font-family: 'Oswald',sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-align: center;
-}
-
-.content .subtitle {
-  width: 100%;
-  height: 17px;
-  line-height: 17px;
-  vertical-align: middle;
-
-  color: white;
-  font-family: 'Oswald',sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 200;
-  letter-spacing: 2px;
-  text-align: center;
-}
-#character .content .subtitle {
-  background-image: linear-gradient(
-    to right,
-    rgb(40, 123, 163),
-    rgb(40, 40, 40)
-    );
-}
-#pokemons .content .subtitle {
-  background-image: linear-gradient(
-    to right,
-    rgb(117, 87, 145),
-    rgb(40, 40, 40)
-    );
-}
-#posts .content .subtitle {
-  background-image: linear-gradient(
-    to right,
-    rgb(181, 59, 62),
-    rgb(40, 40, 40)
-    );
-}
-#links .content .subtitle {
-  background-image: linear-gradient(
-    to right,
-    rgb(52, 145, 88),
-    rgb(40, 40, 40)
-    );
-}
-#tresors .content .subtitle {
-  background-image: linear-gradient(
-    to right,
-    rgb(183, 150, 84),
-    rgb(40, 40, 40)
-    );
-  text-decoration: line-through;
-}
-
-
-/* Copyright */
-
-#main-container #copyright {
-  position: absolute;
-  right: 10px;
-
-  color: rgb(40, 40, 40);
-  font-family: 'Oswald',sans-serif;
-  font-size: 13px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-#main-container #copyright span {
-  color: rgb(0, 124, 185);
-  font-size: 16px;
 }

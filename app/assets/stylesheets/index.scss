@@ -1,18 +1,81 @@
 
 
+
+/*************/
+/* VARIABLES */
+/*************/
+
+/* Dimentions */
+
+$max-width: 600px;
+$header-height: 50px;
+
+/* Colors */
+
+$global-background-color: rgb(241,241,241);
+$subsection-title-color:  rgb(60, 60, 60);
+
+$link-color:              rgb(175, 212, 255);
+$link-color-hover:        rgb(79, 182, 240);
+
+$copyright-color:         rgb(0, 124, 185);
+
+$dark-grey:               rgb(40, 40, 40);
+$blue:                    rgb(40, 123, 163);
+$purple:                  rgb(117, 87, 145);
+$red:                     rgb(181, 59, 62);
+$green:                   rgb(52, 145, 88);
+$yellow:                  rgb(183, 150, 84);
+
+
+/* Images */
+
+$images_route: "/assets/images/index";
+$color-shade-image-prefix: "/color-shade-";
+$black-menu-image-prefix: "/black-menu-";
+
+
+/* Sections */
+
+$sections: (character: $blue, pokemons: $purple, posts: $red, links: $green, tresors: $yellow);
+
+
+
+
+/**********/
+/* MIXINS */
+/**********/
+
+@mixin text-oswald {
+  font-family: 'Oswald', sans-serif;
+  font-variant: normal;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+
+
+
+
+/**********/
+/* STYLES */
+/**********/
+
+
 #main-container {
   position: absolute;
-  left: calc(50% - 300px);
-  width: 600px;
+  left: calc(50% - (#{$max-width} / 2)) ;
+  width: $max-width;
   height: 2000px;
-  background: rgb(241,241,241);
+  background: $global-background-color;
 
 
   /* Banner */
 
   #banner {
     display: block;
-    max-width: 600px;
+    max-width: $max-width;
   }
 
 
@@ -28,20 +91,18 @@
       display: inline-block;
       width: 200px;
 
-      background-image: url("/assets/images/index/NavLink.png");
+      background-image: url($images_route + "/NavLink.png");
 
-      color: rgb(175, 212, 255);
+      @include text-oswald;
+      color: $link-color;
       text-decoration: none;
       font-size: 10px;
-      font-family: 'Oswald',sans-serif;
       font-style: italic;
-      font-variant: normal;
-      font-weight: 300;
       letter-spacing: 3px;
     }
 
     a:hover {
-      color: rgb(79, 182, 240);
+      color: $link-color-hover;
     }
   }
 
@@ -58,15 +119,12 @@
 
     header {
       position: relative;
-      height: 50px;
-      background: rgb(40, 40, 40);
+      height: $header-height;
+      background: $dark_grey;
 
       h1, a, .pointer {
+        @include text-oswald;
         color: white;
-        font-family: 'Oswald',sans-serif;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: 300;
         letter-spacing: 4px;
         text-transform: uppercase;
         word-spacing: 5px;
@@ -78,8 +136,7 @@
         width: 100%;
         height: 100%;
         margin: 0;
-        // Same than #main-container section header height
-        line-height: 50px;
+        line-height: $header-height;
         vertical-align: middle;
         padding-left: 30px;
 
@@ -106,7 +163,7 @@
       .color-shade {
         z-index: 5;
         position: absolute;
-        left: calc(-100% + 24px);
+        left: calc(24px - 100%);
         width: 100%;
         height: 100%;
         transition: all 0.5s ease-in-out;
@@ -121,17 +178,13 @@
       padding: 0;
 
       h2 {
-        background: rgb(60, 60, 60);
+        background: $subsection-title-color;
         width: 100%;
         margin: 20px 0 0 0;
 
+        @include text-oswald;
         color: white;
-        font-family: 'Oswald',sans-serif;
         font-size: 20px;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: 300;
-        letter-spacing: 2px;
         text-align: center;
       }
 
@@ -141,171 +194,103 @@
         line-height: 17px;
         vertical-align: middle;
 
+        @include text-oswald;
         color: white;
-        font-family: 'Oswald',sans-serif;
         font-size: 12px;
-        font-style: normal;
-        font-variant: normal;
         font-weight: 200;
-        letter-spacing: 2px;
         text-align: center;
       }
     }
-
-    /* Copyright */
-
-    #copyright {
-      position: absolute;
-      right: 10px;
-
-      color: rgb(40, 40, 40);
-      font-family: 'Oswald',sans-serif;
-      font-size: 13px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 300;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-
-      span {
-        color: rgb(0, 124, 185);
-        font-size: 16px;
-      }
-    }
-
-
-
-
-    /* Section with or without accordion-hidden */
-
-    &.accordion-hidden {
-      // Same than #main-container section header height
-      height: 50px;
-    }
-
-    &:not(.accordion-hidden) header {
-      .pointer {
-        display:block;
-        transform:rotate(90deg);
-        padding:0;
-      }
-
-      .color-shade {
-        left:0;
-      }
-    }
-
 
 
 
     /* Specific sections */
 
-    &#character {
-      // Must fit content height
-      height: 750px;
+    @each $section, $color in $sections {
+      &##{$section} {
+        header {
+          background-image: url($images_route + $black-menu-image-prefix + $section + ".png");
+        }
 
-      header {
-        background-image: url("/assets/images/index/BlackMenuCharacter.png");
-      }
+        .color-shade {
+          background-image: url($images_route + $color-shade-image-prefix + $section + ".png");
+        }
 
-      .color-shade {
-        background-image: url("/assets/images/index/ColorShadeCharacter.png");
-      }
-
-      .content .subtitle {
-        background-image: linear-gradient(
-                        to right,
-                        rgb(40, 123, 163),
-                        rgb(40, 40, 40)
-        );
+        .content .subtitle {
+          background-image: linear-gradient(to right, $color, $dark-grey);
+        }
       }
     }
 
-    &#pokemons {
-      // Must fit content height
-      height: 410px;
-
-      header {
-        background-image: url("/assets/images/index/BlackMenuPokemons.png");
-      }
-
-      .color-shade {
-        background-image: url("/assets/images/index/ColorShadePokemons.png");
-      }
-
-      .content .subtitle {
-        background-image: linear-gradient(
-                        to right,
-                        rgb(117, 87, 145),
-                        rgb(40, 40, 40)
-        );
-      }
+    &#tresors .content .subtitle {
+      text-decoration: line-through;
     }
 
-    &#posts {
-      // Must fit content height
-      height: 600px;
 
-      header {
-        background-image: url("/assets/images/index/BlackMenuPosts.png");
-      }
+    /* Section with or without accordion-hidden */
 
-      .color-shade {
-        background-image: url("/assets/images/index/ColorShadePosts.png");
-      }
-
-      .content .subtitle {
-        background-image: linear-gradient(
-                        to right,
-                        rgb(181, 59, 62),
-                        rgb(40, 40, 40)
-        );
-      }
+    &.accordion-hidden {
+      height: $header-height;
     }
 
-    &#links {
-      // Must fit content height
-      height: 100px;
 
+    &:not(.accordion-hidden) {
       header {
-        background-image: url("/assets/images/index/BlackMenuLinks.png");
+        .pointer {
+          display:block;
+          transform:rotate(90deg);
+          padding:0;
+        }
+
+        .color-shade {
+          left:0;
+        }
       }
 
-      .color-shade {
-        background-image: url("/assets/images/index/ColorShadeLinks.png");
+      /* Must be generated in views by caculating the section size */
+
+      &#character {
+        // Must fit content height
+        height: 750px;
       }
 
-      .content .subtitle {
-        background-image: linear-gradient(
-                        to right,
-                        rgb(52, 145, 88),
-                        rgb(40, 40, 40)
-        );
+      &#pokemons {
+        // Must fit content height
+        height: 410px;
+      }
+
+      &#posts {
+        // Must fit content height
+        height: 600px;
+      }
+
+      &#links {
+        // Must fit content height
+        height: 100px;
+      }
+
+      &#tresors {
+        // Must fit content height
+        height: 250px;
       }
     }
+  }
 
-    &#tresors {
-      // Must fit content height
-      height: 250px;
+  /* Copyright */
 
-      header {
-        background-image: url("/assets/images/index/BlackMenuTresors.png");
-      }
+  #copyright {
+    position: absolute;
+    right: 10px;
 
-      .color-shade {
-        background-image: url("/assets/images/index/ColorShadeTresors.png");
-      }
+    @include text-oswald;
+    color: $dark-grey;
+    font-size: 13px;
+    text-transform: uppercase;
 
-      .content .subtitle {
-        background-image: linear-gradient(
-                        to right,
-                        rgb(183, 150, 84),
-                        rgb(40, 40, 40)
-        );
-        text-decoration: line-through;
-      }
+    span {
+      color: $copyright-color;
+      font-size: 16px;
     }
-
   }
 
 }

@@ -1,16 +1,18 @@
 
 #suspect_picture {
   float: left;
+
+  img {
+    display: block;
+    background: white;
+    width: 200px;
+    margin-top: 6px;
+    padding: 2px;
+    border: 1px solid rgb(215, 215, 215);
+  }
 }
 
-#suspect_picture img {
-  display: block;
-  background: white;
-  width: 200px;
-  margin-top: 6px;
-  padding: 2px;
-  border: 1px solid rgb(215, 215, 215);
-}
+
 
 #suspect_text {
   display: inline-block;
@@ -25,77 +27,80 @@
   color: rgb(78, 78, 78);
   font-size: 12px;
   font-family: 'Inconsolata', monospace;
-}
 
-#suspect_text h3 {
-  text-align: center;
-  margin: 5px 0 45px 0;
-  border-bottom: 1px solid;
+  h3 {
+    text-align: center;
+    margin: 5px 0 45px 0;
+    border-bottom: 1px solid;
 
-  font-size: 15px;
-}
+    font-size: 15px;
+  }
 
-#suspect_text ul {
-  display: block;
-  list-style: none;
-  padding-left: 10px;
-  margin-top: 0;
-  margin-bottom: 15px;
-}
+  ul {
+    display: block;
+    list-style: none;
+    padding-left: 10px;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
 
-#suspect_text li {
-  margin-bottom: 2px;
-}
+  li {
+    margin-bottom: 2px;
+  }
 
-#suspect_text em {
-  font-style: normal;
-  font-weight: bold;
-}
+  em {
+    font-style: normal;
+    font-weight: bold;
+  }
 
-.names li, .physical li, .face li {
-  display: inline-block;
+  .names li, .physical li, .face li {
+    display: inline-block;
 
-}
+  }
 
-.bi-splited {
-  width: calc(50% - 5px);
-}
+  .bi-splited {
+    width: calc(50% - 5px);
+  }
 
-.field {
-  display: inline-block;
-  background: rgb(240, 240, 240);
-  width: 100px;
-  padding: 5px 0 3px 7px;
+  .field {
+    display: inline-block;
+    background: rgb(240, 240, 240);
+    width: 100px;
+    padding: 5px 0 3px 7px;
 
-  font-family: 'Special Elite', cursive;
-  color: rgb(113, 113, 113);
-  font-size: 11px;
-}
+    font-family: 'Special Elite', cursive;
+    color: rgb(113, 113, 113);
+    font-size: 11px;
+  }
 
-#suspect_name .field {
-  width: 110px;
-}
+  #suspect_name .field {
+    width: 110px;
+  }
 
-#suspect_gender .field {
-  width: 108px;
-}
+  #suspect_gender .field {
+    width: 108px;
+  }
 
-#suspect_eyes .field {
-  width: 107px;
-}
+  #suspect_eyes .field {
+    width: 107px;
+  }
 
-#suspect_skin .field {
-  width: 114px;
-}
+  #suspect_skin .field {
+    width: 114px;
+  }
 
-#suspect_hairs .field {
-  width: 81px;
-}
+  #suspect_hairs .field {
+    width: 81px;
+  }
 
-#suspect_gang .field {
-  width: 134px;
-}
+  #suspect_gang .field {
+    width: 134px;
+  }
 
-#suspect_vehicle .field {
+  #suspect_vehicle .field {
     width: 80px;
+  }
+
 }
+
+

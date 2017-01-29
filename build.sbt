@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.3.1",
   /* Play Slick */
   "com.typesafe.play" %% "play-slick" % "2.0.0",
-  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
+  /*"com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",*/
   /* Postgresql driver */
   "org.postgresql" % "postgresql" % "9.4.1212"
 )

@@ -1,5 +1,6 @@
-# --- !Ups
 
+
+------ # Tables # ------
 
 CREATE TABLE pokemons_stats(
     id SERIAL PRIMARY KEY,
@@ -35,7 +36,6 @@ CREATE TABLE pokemons_attacks(
     pokemon_id INT NOT NULL REFERENCES pokemons(id),
     name VARCHAR NOT NULL
 );
-
 
 
 
@@ -75,12 +75,3 @@ INSERT INTO pokemons_attacks VALUES (5, 1, 'Poudre Dodo');
 INSERT INTO pokemons_attacks VALUES (6, 1, 'Poudre Toxik');
 INSERT INTO pokemons_attacks VALUES (7, 1, 'Tornade');
 INSERT INTO pokemons_attacks VALUES (8, 1, 'Survinsecte');
-
-
-
-
-# --- !Downs
-
-DROP TABLE pokemons_attacks;
-DROP TABLE pokemons;
-DROP TABLE pokemons_stats;

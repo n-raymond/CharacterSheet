@@ -1,4 +1,6 @@
-# --- !Ups
+
+
+------ # Tables # ------
 
 CREATE TABLE characters(
     id SERIAL PRIMARY KEY,
@@ -105,13 +107,3 @@ INSERT INTO topics VALUES (
     'doing',
     0
 );
-
-
-
-
-
-# --- !Downs
-
-DROP TABLE topics;
-DROP TABLE chapters;
-DROP TABLE characters;

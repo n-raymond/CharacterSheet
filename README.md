@@ -12,4 +12,5 @@ This project is a Webapp centered on Scala Play Stack technologies used to handl
 | Java              | 8.*     |
 | Docker            | 1.12    |
 | PostgreSQL        | 9.6.*   |
+| Sass              | 3.4.*   |
 

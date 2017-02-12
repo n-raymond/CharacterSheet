@@ -4,10 +4,10 @@ set -e
 
 # Variables
 
-CONTAINER_NAME="tcard-postgres"
-IMAGE_NAME="tcard-postgres"
-PASSWORD="daekannal"
-PORT="5432"
+POSTGRES_CONTAINER_NAME="tcard-postgres"
+CONTAINER_NAME="tcard-app"
+IMAGE_NAME="tcard-app"
+PORT="9000"
 
 
 # Stop and remove running containers docker
@@ -34,4 +34,4 @@ fi
 docker build -t $IMAGE_NAME:latest --no-cache .
 
 # Run container from postgres-storage image on port 5433
-docker run --name $CONTAINER_NAME -e POSTGRES_PASSWORD=$PASSWORD -p $PORT:5432 -d $IMAGE_NAME:latest
+docker run -it --name $CONTAINER_NAME -p $PORT:9000 $IMAGE_NAME:latest

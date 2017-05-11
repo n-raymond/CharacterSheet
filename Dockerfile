@@ -1,10 +1,14 @@
 FROM java:latest
 
-ADD target/universal/tcard-1.0.tgz /
+ENV appName tcard
+ENV appVersion 1.0
+ENV appWithVersion ${appName}-${appVersion}
 
-RUN rm -rf /tcard-1.0/bin/*.bat
-RUN chown 1000:1000 /tcard-1.0/bin/tcard
-RUN chmod +x /tcard-1.0/bin/tcard
+ADD target/universal/${appWithVersion}.tgz /
 
-WORKDIR /tcard-1.0/bin
-CMD [ "./tcard"  ]
+RUN rm -rf /${appWithVersion}/bin/*.bat
+RUN chown 1000:1000 /${appWithVersion}/bin/${appName}
+RUN chmod +x /${appWithVersion}/bin/${appName}
+
+WORKDIR /${appWithVersion}/bin
+CMD ./${appName}

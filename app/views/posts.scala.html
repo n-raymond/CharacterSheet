@@ -5,7 +5,7 @@
 }
 
 @someone(character: Character) = {
-  <a class="topic_featuring @character.className" href="@character.link">
+  <a class="topic_featuring @character.className" href="@character.link" target="_blank">
     @character.name
   </a>
 }
@@ -25,7 +25,7 @@
 
   @for(topic <- chapter.topics) {
     <div class="topic @topic.status.toString">
-      <a class="topic_title" href="@topic.link">
+      <a class="topic_title" href="@topic.link" target="_blank">
       @topic.title
       </a>
 

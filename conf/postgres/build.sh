@@ -5,7 +5,7 @@ set -e
 # Variables
 
 CONTAINER_NAME="tcard-postgres"
-IMAGE_NAME="tcard-postgres"
+IMAGE_NAME="charactersheet_tcard-postgres"
 PASSWORD="daekannal"
 PORT="5432"
 
@@ -25,7 +25,7 @@ fi
 IMAGES=$(docker images -q $IMAGE_NAME)
 
 if [ -n "$IMAGES" ]; then
-    docker rmi -f $IMAGES || true
+    docker rmi -f $IMAGES || true
     echo "This images have been removed : $IMAGES"
 fi
 

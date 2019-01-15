@@ -14,3 +14,9 @@ This project is a Webapp centered on Scala Play Stack technologies used to handl
 | PostgreSQL        | 9.6.*   |
 | Sass              | 3.4.*   |
 
+### Run in local
+
+Use the following command:
+```
+docker-compose up --build
+```

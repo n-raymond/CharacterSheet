@@ -1,16 +1,10 @@
-version: '2'
-
-networks:
-  tcard-network:
-    driver: bridge
+version: '3'
 
 services:
 
   tcard-postgres:
     container_name: tcard-postgres
     build: conf/postgres
-    networks:
-      - tcard-network
     ports:
       - 5432:5432
     environment:
@@ -19,8 +13,6 @@ services:
   tcard-app:
     container_name: tcard-app
     build: .
-    networks:
-      - tcard-network
     ports:
       - 9000:9000
     depends_on:

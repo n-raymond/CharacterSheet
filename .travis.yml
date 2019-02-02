@@ -4,3 +4,13 @@ cache:
   directories:
     - $HOME/.ivy2/cache
     - $HOME/.sbt/boot/
+
+services:
+    - docker
+
+deploy:
+    provider: script
+    script: bash scripts/deploy.sh
+    on:
+      all_branches: true
+      condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+

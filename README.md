@@ -18,5 +18,6 @@ This project is a Webapp centered on Scala Play Stack technologies used to handl
 
 Use the following command:
 ```
+script/run.sh
 docker-compose up --build
 ```

@@ -1,7 +1,7 @@
 FROM java:latest
 
-ENV appName tcard
-ENV appVersion 1.0
+ENV appName charactersheet
+ENV appVersion 1.0-SNAPSHOT
 ENV appWithVersion ${appName}-${appVersion}
 
 ADD target/universal/${appWithVersion}.zip .

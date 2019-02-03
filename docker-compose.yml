@@ -17,7 +17,7 @@ services:
     build:
       context: .
       args:
-        appVersion: ${CHARACTERSHEET_VERSION}
+        appVersion: ${APP_VERSION}
     ports:
       - 9000:9000
     depends_on:

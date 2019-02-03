@@ -1,7 +1,8 @@
 FROM java:latest
 
+ARG appVersion=1.0.0.SNAPSHOT
+
 ENV appName charactersheet
-ENV appVersion 1.0-SNAPSHOT
 ENV appWithVersion ${appName}-${appVersion}
 
 ADD target/universal/${appWithVersion}.zip .

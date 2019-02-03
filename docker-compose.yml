@@ -2,18 +2,23 @@ version: '3'
 
 services:
 
-  tcard-postgres:
-    container_name: tcard-postgres
+  postgres:
+    container_name: charactersheet-db
+    image: nraymond/charactersheet-db
     build: conf/postgres
     ports:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: 'daekannal'
 
-  tcard-app:
-    container_name: tcard-app
-    build: .
+  app:
+    container_name: charactersheet
+    image: nraymond/charactersheet
+    build:
+      context: .
+      args:
+        appVersion: ${CHARACTERSHEET_VERSION}
     ports:
       - 9000:9000
     depends_on:
-      - tcard-postgres
+      - postgres

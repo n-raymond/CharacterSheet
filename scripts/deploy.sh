@@ -1,11 +1,11 @@
 #!/bin/bash
 
 export APP_VERSION=$1
-DOCKER_IMAGE="/nraymond/charactersheet"
+DOCKER_IMAGE="nraymond/charactersheet"
 
-echo "**********************************"
+echo "***************************"
 echo "* Deploying version $APP_VERSION *"
-echo "**********************************"
+echo "***************************"
 
 echo "Packaging the app..."
 sed -i "s/\(version := \"\).*\(\"\)/\1${APP_VERSION}\2/" build.sbt
@@ -15,7 +15,7 @@ echo "Creating docker image..."
 docker-compose build app
 
 echo "Sending docker image on registry..."
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+echo "$DOCKER_PASSWORD" | docker login --username="$DOCKER_USERNAME" --password-stdin
 docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$APP_VERSION
 docker push $DOCKER_IMAGE:latest
 docker push $DOCKER_IMAGE:$APP_VERSION

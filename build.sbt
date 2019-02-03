@@ -1,6 +1,6 @@
 name := """CharacterSheet"""
 
-version := "1.0.0-SNAPSHOT"
+version := "SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 

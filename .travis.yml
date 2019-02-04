@@ -10,7 +10,7 @@ services:
 
 addons:
   ssh_known_host:
-    - $HOST
+    - $SSH_HOST
   apt:
     packages:
     - sshpass

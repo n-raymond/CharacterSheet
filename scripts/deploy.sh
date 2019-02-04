@@ -22,7 +22,9 @@ docker tag $DOCKER_IMAGE:latest $DOCKER_IMAGE:$APP_VERSION
 docker push $DOCKER_IMAGE:latest
 docker push $DOCKER_IMAGE:$APP_VERSION
 
-sshpass -p "$SSH_PASSWORD" ssh $SSH_USER@$SSH_HOST -p $SSH_PORT pwd
+set -x
+
+sshpass -p "$SSH_PASSWORD" ssh $SSH_USER@$SSH_HOST -p $SSH_PORT pwd | (echo "Can't connect to ssh" && exit 1)
 
 # Connect to SSH
 

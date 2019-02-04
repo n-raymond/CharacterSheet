@@ -6,11 +6,18 @@ cache:
     - $HOME/.sbt/boot/
 
 services:
-    - docker
+  - docker
+
+addons:
+  ssh_known_host:
+    - $HOST
+  apt:
+    packages:
+    - sshpass
 
 deploy:
-    provider: script
-    script: bash scripts/deploy.sh $TRAVIS_TAG
-    on:
-      all_branches: true
-      condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+
+  provider: script
+  script: bash scripts/deploy.sh $TRAVIS_TAG
+  on:
+    all_branches: true
+    condition: $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+

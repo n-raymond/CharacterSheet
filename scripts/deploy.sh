@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -e
 
 export APP_VERSION=$1
 DOCKER_IMAGE="nraymond/charactersheet"
